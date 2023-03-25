@@ -26,18 +26,20 @@ jobs:
         id: create-pull-request
         uses: peter-evans/create-pull-request@v4
         with:
+        #   commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
+        #   title: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
+        #   body: |
+        #     Update API from [slack-api-ref](https://github.com/slack-ruby/slack-api-ref) (${{ env.CURRENT_DATE }})
+          branch: update-api
+      - name: Update CHANGELOG
+        run: |
+          ruby -i -pe 'sub(/\* Your contribution here\./, "* Your contribution here.\n* [#${{ steps.create-pull-request.outputs.pull-request-number }}"](https://github.com/slack-ruby/slack-ruby-client/pull/${{ steps.create-pull-request.outputs.pull-request-number }}"): Update Slack API (${{ env.CURRENT_DATE }}) - [@slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client).")' CHANGELOG.md
+      - name: Create pull request
+        id: update-changelog
+        uses: peter-evans/create-pull-request@v4
+        with:
           commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           title: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           body: |
             Update API from [slack-api-ref](https://github.com/slack-ruby/slack-api-ref) (${{ env.CURRENT_DATE }})
           branch: update-api
-      # - name: Update CHANGELOG
-      #   run: |
-      #     ruby -i -pe 'sub(/\* Your contribution here\./, "* Your contribution here.\n* [#${{ steps.create-pull-request.outputs.pull-request-number }}"](https://github.com/slack-ruby/slack-ruby-client/pull/${{ steps.create-pull-request.outputs.pull-request-number }}"): Update Slack API (${{ env.CURRENT_DATE }}) - [@slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client).")' CHANGELOG.md
-      # - name: Create pull request
-      #   id: update-changelog
-      #   uses: peter-evans/create-pull-request@v4
-      #   with:
-      #     commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
-      #     title: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
-      #     branch: update-api
