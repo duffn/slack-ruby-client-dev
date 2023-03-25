@@ -18,7 +18,7 @@ jobs:
       #   run: bundle exec rake slack:api:update
       - name: Get current date
         run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-      - name: Make a files
+      - name: Make a file
         run : echo "${{ env.CURRENT_DATE }}" > file.txt
       - name: Remove files added by setup-ruby
         run: rm -rf vendor
@@ -29,10 +29,8 @@ jobs:
           commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           title: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           body: |
-            Update API from slack-api-ref (${{ env.CURRENT_DATE }})
+            Update API from [slack-api-ref](https://github.com/slack-ruby/slack-api-ref) (${{ env.CURRENT_DATE }})
           branch: update-api
-          # base: master
-          # push-to-fork: duffn/slack-ruby-client-dev
       # - name: Update CHANGELOG
       #   run: |
       #     ruby -i -pe 'sub(/\* Your contribution here\./, "* Your contribution here.\n* [#${{ steps.create-pull-request.outputs.pull-request-number }}"](https://github.com/slack-ruby/slack-ruby-client/pull/${{ steps.create-pull-request.outputs.pull-request-number }}"): Update Slack API (${{ env.CURRENT_DATE }}) - [@slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client).")' CHANGELOG.md
@@ -43,5 +41,3 @@ jobs:
       #     commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
       #     title: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
       #     branch: update-api
-      #     base: master
-          # push-to-fork: duffn/slack-ruby-client-dev
