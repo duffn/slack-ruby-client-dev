@@ -8,31 +8,33 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
+      # Steps for setup and possible creation of initial pull request
       - uses: actions/checkout@v3
         with:
           submodules: recursive  
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.2"
-          bundler-cache: true
       - name: Get current date
         run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       - name: Make a file to trigger an initial pull request
         run : echo "${{ env.CURRENT_DATE }}" > file.txt
-      - name: Remove files added by setup-ruby
-        run: rm -rf vendor
       - name: Create initial pull request
         id: create-initial-pull-request
         uses: peter-evans/create-pull-request@v4
         with:
           branch: update-api
           base: master
+      # Generation of new API methods and update of pull request
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+      - name: Remove files added by setup-ruby
+        run: rm -rf vendor
+      - name: Update API from slack-api-ref
+        run: bundle exec rake slack:api:update
       - name: Update changelog
         run: |
           ruby -i -pe 'sub(/\* Your contribution here\./, "* Your contribution here.\n* [#${{ steps.create-initial-pull-request.outputs.pull-request-number }}](https://github.com/slack-ruby/slack-ruby-client/pull/${{ steps.create-initial-pull-request.outputs.pull-request-number }}): Update Slack API (${{ env.CURRENT_DATE }}) - [@slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client).")' CHANGELOG.md
-      - name: Update API from slack-api-ref
-        run: bundle exec rake slack:api:update
       - name: Create pull request with changelog
         id: update-changelog
         uses: peter-evans/create-pull-request@v4
