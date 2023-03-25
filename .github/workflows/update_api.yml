@@ -28,6 +28,8 @@ jobs:
         with:
           commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           title: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
+          body: |
+            Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           branch: update-api
           # base: master
           # push-to-fork: duffn/slack-ruby-client-dev
