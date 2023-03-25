@@ -18,6 +18,8 @@ jobs:
       #   run: bundle exec rake slack:api:update
       - name: Get current date
         run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      - name: Remove files added by setup-ruby
+        run: rm -rf vendor
       - name: Create pull request
         id: create-pull-request
         uses: peter-evans/create-pull-request@v4
@@ -25,7 +27,7 @@ jobs:
           commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           title: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
           branch: update-api
-          base: master
+          # base: master
           # push-to-fork: duffn/slack-ruby-client-dev
       # - name: Update CHANGELOG
       #   run: |
