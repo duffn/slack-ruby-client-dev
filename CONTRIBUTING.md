@@ -1,4 +1,4 @@
-# Contributing to Slack-Ruby-Client
+# Contributing to Slack-Ruby-Client 11
 
 This project is work of [many contributors](https://github.com/slack-ruby/slack-ruby-client/graphs/contributors).
 
