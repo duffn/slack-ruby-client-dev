@@ -22,8 +22,8 @@ jobs:
         run : echo "${{ env.CURRENT_DATE }}" > file.txt
       - name: Remove files added by setup-ruby
         run: rm -rf vendor
-      - name: Create pull request
-        id: create-pull-request
+      - name: Create initial pull request
+        id: create-initial-pull-request
         uses: peter-evans/create-pull-request@v4
         with:
         #   commit-message: Update API from slack-api-ref (${{ env.CURRENT_DATE }})
@@ -34,10 +34,10 @@ jobs:
           base: master
       - name: Update CHANGELOG
         run: |
-          ruby -i -pe 'sub(/\* Your contribution here\./, "* Your contribution here.\n* [#${{ steps.create-pull-request.outputs.pull-request-number }}](https://github.com/slack-ruby/slack-ruby-client/pull/${{ steps.create-pull-request.outputs.pull-request-number }}): Update Slack API (${{ env.CURRENT_DATE }}) - [@slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client).")' CHANGELOG.md
+          ruby -i -pe 'sub(/\* Your contribution here\./, "* Your contribution here.\n* [#${{ steps.create-initial-pull-request.outputs.pull-request-number }}](https://github.com/slack-ruby/slack-ruby-client/pull/${{ steps.create-initial-pull-request.outputs.pull-request-number }}): Update Slack API (${{ env.CURRENT_DATE }}) - [@slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client).")' CHANGELOG.md
       - name: Make a file
-        run : echo "${{ env.CURRENT_DATE }}" > file2.txt
-      - name: Create pull request
+        run : echo "${{ env.CURRENT_DATE }}" > file3.txt
+      - name: Create pull request with changelog
         id: update-changelog
         uses: peter-evans/create-pull-request@v4
         with:
