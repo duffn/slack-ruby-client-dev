@@ -36,7 +36,7 @@ jobs:
         run: |
           ruby -i -pe 'sub(/\* Your contribution here\./, "* Your contribution here.\n* [#${{ steps.create-pull-request.outputs.pull-request-number }}](https://github.com/slack-ruby/slack-ruby-client/pull/${{ steps.create-pull-request.outputs.pull-request-number }}): Update Slack API (${{ env.CURRENT_DATE }}) - [@slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client).")' CHANGELOG.md
       - name: Make a file
-        run : echo "${{ env.CURRENT_DATE }}" > file.txt
+        run : echo "${{ env.CURRENT_DATE }}" > file2.txt
       - name: Create pull request
         id: update-changelog
         uses: peter-evans/create-pull-request@v4
