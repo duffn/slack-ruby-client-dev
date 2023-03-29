@@ -33,8 +33,8 @@ jobs:
         with:
           ruby-version: "3.2"
           bundler-cache: true
-      # - name: Update API from slack-api-ref
-      #   run: bundle exec rake slack:api:update
+      - name: Update API from slack-api-ref
+        run: bundle exec rake slack:api:update
       - name: Remove files added by setup-ruby
         run: rm -rf vendor
       - name: Update changelog
