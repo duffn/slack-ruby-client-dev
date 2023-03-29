@@ -363,6 +363,7 @@ module Slack
         class MetadataOnlyDoesNotSupportDate < SlackError; end
         class MetadataTooLarge < SlackError; end
         class MethodDeprecated < SlackError; end
+        class MethodNotSupported < SlackError; end
         class MethodNotSupportedForChannelType < SlackError; end
         class MigrationInProgress < SlackError; end
         class MissingArgs < SlackError; end
@@ -404,12 +405,14 @@ module Slack
         class NoPermission < SlackError; end
         class NoPin < SlackError; end
         class NoReaction < SlackError; end
+        class NoRefreshToken < SlackError; end
         class NoResolutionFound < SlackError; end
         class NoScopes < SlackError; end
         class NoSuchSubteam < SlackError; end
         class NoTeamIdsGiven < SlackError; end
         class NoTeamsToDisconnect < SlackError; end
         class NoText < SlackError; end
+        class NoTokensFound < SlackError; end
         class NoUser < SlackError; end
         class NoUsersProvided < SlackError; end
         class NoValidChannels < SlackError; end
@@ -465,6 +468,7 @@ module Slack
         class PreviewFeatureNotAvailable < SlackError; end
         class PrimaryUsergroupNotFound < SlackError; end
         class ProfileSetFailed < SlackError; end
+        class ProvidersNotFound < SlackError; end
         class PublicVideoNotAllowed < SlackError; end
         class PublishedAppOnly < SlackError; end
         class PushLimitReached < SlackError; end
@@ -521,6 +525,7 @@ module Slack
         class TimeTooFar < SlackError; end
         class TokenAlreadyExchanged < SlackError; end
         class TokenExpired < SlackError; end
+        class TokenNotFound < SlackError; end
         class TokenRevoked < SlackError; end
         class TokenRotationNotEnabled < SlackError; end
         class TooLarge < SlackError; end
@@ -547,6 +552,7 @@ module Slack
         class TriggerExchanged < SlackError; end
         class TriggerExpired < SlackError; end
         class TwoFactorSetupRequired < SlackError; end
+        class UnableToDelete < SlackError; end
         class UnableToFetchCustomEmojis < SlackError; end
         class UnableToLinkIdpGroupAndChannel < SlackError; end
         class UnableToProcessPostRequest < SlackError; end
@@ -953,6 +959,7 @@ module Slack
           'metadata_only_does_not_support_date' => MetadataOnlyDoesNotSupportDate,
           'metadata_too_large' => MetadataTooLarge,
           'method_deprecated' => MethodDeprecated,
+          'method_not_supported' => MethodNotSupported,
           'method_not_supported_for_channel_type' => MethodNotSupportedForChannelType,
           'migration_in_progress' => MigrationInProgress,
           'missing_args' => MissingArgs,
@@ -994,12 +1001,14 @@ module Slack
           'no_permission' => NoPermission,
           'no_pin' => NoPin,
           'no_reaction' => NoReaction,
+          'no_refresh_token' => NoRefreshToken,
           'no_resolution_found' => NoResolutionFound,
           'no_scopes' => NoScopes,
           'no_such_subteam' => NoSuchSubteam,
           'no_team_ids_given' => NoTeamIdsGiven,
           'no_teams_to_disconnect' => NoTeamsToDisconnect,
           'no_text' => NoText,
+          'no_tokens_found' => NoTokensFound,
           'no_user' => NoUser,
           'no_users_provided' => NoUsersProvided,
           'no_valid_channels' => NoValidChannels,
@@ -1055,6 +1064,7 @@ module Slack
           'preview_feature_not_available' => PreviewFeatureNotAvailable,
           'primary_usergroup_not_found' => PrimaryUsergroupNotFound,
           'profile_set_failed' => ProfileSetFailed,
+          'providers_not_found' => ProvidersNotFound,
           'public_video_not_allowed' => PublicVideoNotAllowed,
           'published_app_only' => PublishedAppOnly,
           'push_limit_reached' => PushLimitReached,
@@ -1111,6 +1121,7 @@ module Slack
           'time_too_far' => TimeTooFar,
           'token_already_exchanged' => TokenAlreadyExchanged,
           'token_expired' => TokenExpired,
+          'token_not_found' => TokenNotFound,
           'token_revoked' => TokenRevoked,
           'token_rotation_not_enabled' => TokenRotationNotEnabled,
           'too_large' => TooLarge,
@@ -1137,6 +1148,7 @@ module Slack
           'trigger_exchanged' => TriggerExchanged,
           'trigger_expired' => TriggerExpired,
           'two_factor_setup_required' => TwoFactorSetupRequired,
+          'unable_to_delete' => UnableToDelete,
           'unable_to_fetch_custom_emojis' => UnableToFetchCustomEmojis,
           'unable_to_link_idp_group_and_channel' => UnableToLinkIdpGroupAndChannel,
           'unable_to_process_post_request' => UnableToProcessPostRequest,
