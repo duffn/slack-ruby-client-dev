@@ -7,7 +7,7 @@ on:
   #   - cron: "15 23 * * *"
 jobs:
   update-api:
-    if: ${{ github.repository == 'slack-ruby/slack-ruby-client' }}
+    # if: ${{ github.repository == 'slack-ruby/slack-ruby-client' }}
     runs-on: ubuntu-latest
     permissions: 
       contents: write
