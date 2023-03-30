@@ -10,7 +10,7 @@ namespace :slack do
   namespace :web do
     namespace :api do
       desc 'Update Web API.'
-      task update: [:git_update] do
+      task :update do
         group_schema = JSON.parse(File.read('lib/slack/web/api/schema/group.json'))
         dirglob = 'lib/slack/web/api/slack-api-ref/groups/**/*.json'
         groups = Dir.glob(dirglob).each_with_object({}) do |path, result|

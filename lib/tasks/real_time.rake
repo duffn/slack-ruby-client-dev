@@ -10,7 +10,7 @@ namespace :slack do
       REAL_TIME_EVENTS_MARKER = '### RealTime Events'
 
       desc 'Update Real Time API.'
-      task update: [:git_update] do
+      task :update do
         event_schema = JSON.parse(File.read('lib/slack/real_time/api/schema/event.json'))
         dirglob = 'lib/slack/web/api/slack-api-ref/events/**/*.json'
         events = Dir.glob(dirglob).each_with_object({}) do |path, result|

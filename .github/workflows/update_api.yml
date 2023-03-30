@@ -15,8 +15,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      # - name: Config git to rebase
-      #   run: git config --global pull.rebase true
+      - name: Config git to rebase
+        run: git config --global pull.rebase true
       - name: Get current date
         run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       # - name: Make a file to trigger an initial pull request
