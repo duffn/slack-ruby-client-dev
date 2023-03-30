@@ -16,7 +16,7 @@ jobs:
         with:
           submodules: recursive
       - name: Config git to rebase
-        run: git config --global pull.rebase true
+        run: git config --global pull.rebase false
       - name: Get current date
         run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       - name: Make a file to trigger an initial pull request
